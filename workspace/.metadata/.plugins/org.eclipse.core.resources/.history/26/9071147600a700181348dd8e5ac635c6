@@ -1,0 +1,37 @@
+import java.util.Scanner;
+
+public class Aposentadoriav1 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		double alvo;
+		double juros;
+		double contribuicao;
+		int anos = 0;
+		double saldo = 0;
+
+		// exercicio: verifique valores informados abaixo são aceitáveis
+		System.out.print("Quanto dinheiro voce quer para se aposentar? ");
+		alvo = sc.nextDouble();
+		System.out.print("Quanto dinheiro voce vai contribuir todo ano?");
+		contribuicao = sc.nextDouble();
+		System.out.print("Taxa de juros em % (exemplo: digite 7.5 para 7.5%): ");
+		juros = sc.nextDouble() / 100;
+
+		anos = calculaAnosContribuicao(alvo, anos, saldo, contribuicao, juros);
+
+		System.out.println("Voce pode se aposentar em " + anos + " anos.");
+	}
+	
+	private static double recebeDouble(Scanner teclado, String mensagem) {
+		System.out.println(mensagem);
+		return teclado.nextDouble();
+	}
+
+	private static int calculaAnosContribuicao(double alvo, int anos, double saldo, double contribuicao, double juros) {
+		while (saldo < alvo) {
+			saldo = (saldo + contribuicao) * (1 + juros);
+			anos++;
+		}
+		return anos;
+	}
+}

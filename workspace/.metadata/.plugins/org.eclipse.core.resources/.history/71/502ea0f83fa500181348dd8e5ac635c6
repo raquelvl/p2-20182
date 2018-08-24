@@ -1,0 +1,11 @@
+package java.basico;
+
+import java.util.Calendar;
+
+public class ExemploInutilDeClasse {
+	public static void main(String[] args) {
+		int ano = Calendar.get(Calendar.YEAR);
+		System.out.println("Imprime na saída padrão - a tela!");
+	}
+
+}

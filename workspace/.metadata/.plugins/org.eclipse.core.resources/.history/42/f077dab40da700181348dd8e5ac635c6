@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class CalculaMedia {
+	public static void main(String[] args) {
+		Scanner teclado = new Scanner(System.in);
+		
+		System.out.println("quantos numeros vai considerar?");
+		final int N = teclado.nextInt();
+		
+		int[] numeros = new int[N];
+		
+		for (int i = 0; i < N; i++) {
+			numeros[i] = teclado.nextInt();
+		}
+		int b = teclado.nextInt();
+		int c = teclado.nextInt();
+		
+		double soma = (a + b + c)/3;
+		
+		System.out.println(soma);
+	}
+
+}

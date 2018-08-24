@@ -1,0 +1,14 @@
+
+public class Equacao {
+public static void main(String[] args) {
+	int a = 1;
+	int b = -5;
+	int c = 2;
+	
+	double delta = Math.pow(b, 2) - (4*a*c);
+	
+	if(delta >= 0) {
+		System.out.println(-b + Math.sqrt(delta)/(2*a));
+	}
+}
+}

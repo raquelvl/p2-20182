@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class AlunosIdadeNota {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		String prompt1 = "Informe o numero de alunos a serem cadastrados: ";
+		int numAlunos = recebeIntPositivo(prompt1, sc);
+
+	}
+
+	private static int recebeIntPositivo(String prompt1, Scanner sc) {
+		int num = 0;
+		do {
+			System.out.println(prompt1);
+			num = Integer.parseInt(sc.nextLine());
+		} while (num <= 0);
+		return num;
+	}
+
+}

@@ -1,0 +1,11 @@
+package java.basico;
+
+import java.time.LocalDate;
+
+public class ExemploInutilDeClasse {
+	public static void main(String[] args) {
+		int ano = (new LocalDate()).getYear();
+		System.out.println("Imprime na saída padrão - a tela!");
+	}
+
+}

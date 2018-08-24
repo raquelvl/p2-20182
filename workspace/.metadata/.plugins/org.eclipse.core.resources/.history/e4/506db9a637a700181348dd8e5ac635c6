@@ -1,0 +1,130 @@
+import java.util.Scanner;
+
+public class CalculosSobreNumerosv2 {
+	public static void main(String[] args) {
+		Scanner teclado = new Scanner(System.in);
+
+		final int N = recebeInteiro(teclado, "quantos numeros vai considerar?");
+
+		int[] numeros = new int[N];
+
+		recebeNumeros(teclado, numeros);
+
+		int soma = soma(numeros);
+		int min = minimo(numeros);
+		int max = maximo(numeros);
+
+		String e = null;
+		do {
+		imprimeMenu();
+		String e = teclado.nextLine();
+
+		switch (e) {
+		case "0":
+			System.out.println("A soma dos numeros eh " + soma(numeros));
+			break;
+			
+		case "1":
+			System.out.printf("A media dos numeros eh %.2f",
+					(double) (soma / N));
+			break;
+			
+		case "2":
+			System.out.println("O menor numero eh " + minimo(numeros));
+			break;
+			
+		case "3":
+			System.out.println("O maior numero eh " + maximo(numeros));
+			break;
+			
+		case "4":
+			boolean encontrou = pesquisa(teclado, numeros);
+			System.out.println(encontrou ? "o numero estah no array" : "o numero nao estah no array");
+			break;
+
+		case "5":
+			boolean ehMultiplo = verificaSeSomaEhMultiploDeTres(numeros);
+			System.out.println(ehMultiplo ? "a soma eh multiplo de 3" : "a soma nao eh multiplo de 3");
+			break;
+
+		default:
+			System.exit(0);
+		}
+		} while();
+
+		System.out.printf("A media dos numeros eh %.2f, o menor numero eh %d e o maior numero eh %d.",
+				(double) (soma / N), min, max);
+
+		System.out.println("Digite p para pesquisar se um certo numero estah no array de numeros recebido. ");
+		System.out.println("Digite 3 para saber se a soma dos numeros eh multiplo de 3.");
+		System.out.println("Digite qualquer outro caractere ou digito para sair desse programa.");
+		String pesquisa = teclado.nextLine();
+		pesquisa = teclado.nextLine();
+
+	}
+
+	private static void imprimeMenu() {
+		System.out.println("Digite 0 para ver a soma");
+		System.out.println("Digite 1 para ver a media");
+		System.out.println("Digite 2 para ver o minimo");
+		System.out.println("Digite 3 para ver o maximo");
+		System.out.println("Digite 4 para pesquisar um numero no array (esta/nao esta)");
+		System.out.println("Digite 5 para ver se a soma dos numeros eh multiplo de 3 (sim/nao)");
+		System.out.println("Para sair do programa digite qualquer outro digito/caractere.");
+	}
+
+	private static boolean verificaSeSomaEhMultiploDeTres(int[] numeros) {
+		if ((soma(numeros) % 3) == 0)
+			return true;
+		return false;
+	}
+
+	private static boolean pesquisa(Scanner sc, int[] numeros) {
+		int numero = recebeInteiro(sc, "Digite o numero a ser pesquisado");
+		for (int i = 0; i < numeros.length; i++) {
+			if (numeros[i] == numero)
+				return true;
+		}
+		return false;
+	}
+
+	private static int maximo(int[] numeros) {
+		int max = Integer.MIN_VALUE;
+		for (int i = 0; i < numeros.length; i++) {
+			if (numeros[i] > max) {
+				max = numeros[i];
+			}
+		}
+		return max;
+	}
+
+	private static int minimo(int[] numeros) {
+		int min = Integer.MAX_VALUE;
+		for (int i = 0; i < numeros.length; i++) {
+			if (numeros[i] < min) {
+				min = numeros[i];
+			}
+		}
+		return min;
+	}
+
+	private static int soma(int[] numeros) {
+		int soma = 0;
+		for (int i = 0; i < numeros.length; i++) {
+			soma += numeros[i];
+		}
+		return soma;
+	}
+
+	private static void recebeNumeros(Scanner sc, int[] numeros) {
+		for (int i = 0; i < numeros.length; i++) {
+			numeros[i] = recebeInteiro(sc, "Digite o proximo numero");
+		}
+	}
+
+	private static int recebeInteiro(Scanner sc, String string) {
+		System.out.println(string);
+		return sc.nextInt();
+	}
+
+}

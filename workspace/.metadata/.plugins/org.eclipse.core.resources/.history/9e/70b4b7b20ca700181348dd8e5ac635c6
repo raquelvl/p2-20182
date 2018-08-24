@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class AlternaLetras {
+
+	public static void main(String[] args) {
+		String str = recebeString("Digite a frase a ter letras alternadas");
+		
+
+	}
+
+	private static String recebeString(String string) {
+		Scanner teclado = new Scanner(System.in);
+		
+		return null;
+	}
+
+}

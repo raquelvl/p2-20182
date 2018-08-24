@@ -1,0 +1,15 @@
+import java.util.Scanner;
+
+public class CalculaMedia {
+	public static void main(String[] args) {
+		Scanner teclado = new Scanner(System.in);
+		int a = teclado.nextInt();
+		int b = teclado.nextInt();
+		int c = teclado.nextInt();
+		
+		double soma = (a + b + c)/3;
+		
+		System.out.println(soma);
+	}
+
+}

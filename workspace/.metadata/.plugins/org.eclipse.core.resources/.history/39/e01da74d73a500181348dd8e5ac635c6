@@ -1,0 +1,25 @@
+
+public class EquacaoDeSegundoGrau {
+	public static void main(String[] args) {
+//		int a = 10;
+//		int b = 6;
+//		int c = 10;
+
+//		int a = 1;
+//		int b = 8;
+//		int c = 16;
+		
+		int a = 1;
+		int b = -2;
+		int c = 3;
+
+
+		double delta = Math.pow(b, 2) - (4 * a * c);
+
+		if (delta >= 0) {
+			System.out.println((-b + Math.sqrt(delta)) / (2 * a));
+			System.out.println((-b - Math.sqrt(delta)) / (2 * a));
+		} else
+			System.out.println("deu ruim... :(");
+	}
+}

@@ -1,0 +1,16 @@
+package java.basico;
+
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.Period;
+
+public class TempoDeVinganca {
+	public static void main(String[] args) {
+		LocalDate homemNoEspaco = LocalDate.of(1961, Month.APRIL, 12);
+		LocalDate homemNaLua = LocalDate.of(1969, Month.MAY, 25);
+
+		Period periodo = Period.between(homemNoEspaco, homemNaLua);
+
+		System.out.printf("%s anos, %s mês e %s dias", periodo.getYears(), periodo.getMonths(), periodo.getDays());
+	}
+}

@@ -1,13 +1,11 @@
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Scanner;
 
 /**
  * Codigo desenvolvido para aulas de P2-computacao@ufcg 2018.1 Usado como prova
  * de conceito, podendo ser melhorado. Assuntos: estruturas básicas de java
  * 
- * @author Lívia
+ * @author Livia/Raquel
  *
  */
 public class DiarioDeBordoP2 {
@@ -22,16 +20,13 @@ public class DiarioDeBordoP2 {
 		 */
 		final String MENU = "1- adicionar anotacao;\n" + "2- pesquisar i-esima anotacao;\n" + "3- listar anotacoes;\n"
 				+ "4- pesquisar palavra-chave;\n" + "5- Sair";
-		final int ANOTAR = 1;
-		final int PESQUISAR = 2;
-		final int LISTAR = 3;
-		final int PESQUISAR_PALAVRA = 4;
-		final int SAIR = 5;
+		final int ANOTAR = 1, PESQUISAR = 2, LISTAR = 3, PESQUISAR_PALAVRA = 4, SAIR = 5;
 
 		final String PROMPT_GET_ANOTACAO = "Qual anotacao quer ver? ";
 		final String PROMPT_PALAVRA_CHAVE = "Qual a palavra a ser pesquisada nas anotacoes?";
 
 		final int AULAS = recuperaNumeroDeAulas(args);
+
 		String[] datas = new String[AULAS];
 		String[] anotacoes = new String[AULAS];
 
@@ -48,22 +43,18 @@ public class DiarioDeBordoP2 {
 				break;
 
 			case PESQUISAR:
-				int i = leInt(PROMPT_GET_ANOTACAO);
+				if (qtdEntradas == 0)
+					continue;
+				int i = getNumeroDaAnotacao(PROMPT_GET_ANOTACAO, qtdEntradas);
 				imprimeAnotacao(datas, anotacoes, i);
 				break;
 
 			case LISTAR:
-				for (int j = 0; j < qtdEntradas; j++) {
-					imprimeAnotacao(datas, anotacoes, j);
-				}
+				imprimeAnotacoes(datas, anotacoes, qtdEntradas);
 				break;
 
 			case PESQUISAR_PALAVRA:
-				String palavraChave = leLinha(recebeLinha, PROMPT_PALAVRA_CHAVE);
-				for (int j = 0; j < qtdEntradas; j++) {
-					if (anotacoes[j].contains(palavraChave))
-						imprimeAnotacao(datas, anotacoes, j);
-				}
+				pesquisaPalavraChave(PROMPT_PALAVRA_CHAVE, datas, anotacoes, qtdEntradas);
 				break;
 
 			case SAIR:
@@ -74,6 +65,29 @@ public class DiarioDeBordoP2 {
 			}
 		} while (qtdEntradas != anotacoes.length && op != SAIR);
 	}// main
+
+	private static void pesquisaPalavraChave(final String PROMPT_PALAVRA_CHAVE, String[] datas, String[] anotacoes,
+			int qtdEntradas) {
+		String palavraChave = leLinha(recebeLinha, PROMPT_PALAVRA_CHAVE);
+		for (int j = 0; j < qtdEntradas; j++) {
+			if (anotacoes[j].contains(palavraChave))
+				imprimeAnotacao(datas, anotacoes, j);
+		}
+	}
+
+	private static void imprimeAnotacoes(String[] datas, String[] anotacoes, int qtdEntradas) {
+		for (int j = 0; j < qtdEntradas; j++) {
+			imprimeAnotacao(datas, anotacoes, j);
+		}
+	}
+
+	private static int getNumeroDaAnotacao(final String PROMPT_GET_ANOTACAO, int qtdEntradas) {
+		int i = 0;
+		do {
+			i = leInt(PROMPT_GET_ANOTACAO);
+		} while (i >= qtdEntradas || i < 0);
+		return i;
+	}
 
 	private static String leLinha(Scanner recebeLinha, String prompt) {
 		System.out.println(prompt);
@@ -108,7 +122,7 @@ public class DiarioDeBordoP2 {
 		try {
 			System.out.println("Digite a data (dd/MM/yyyy): ");
 			String dataRecebida = recebeLinha.nextLine();
-			DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+			SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 			datas[index] = df.parse(dataRecebida).toString();
 		} catch (Exception ex) {
 			recebeData(datas, index);

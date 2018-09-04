@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
 public class DiarioDeClasse {
@@ -11,22 +13,29 @@ public class DiarioDeClasse {
 	}
 
 	public boolean adicionaAnotacao(String data, String anotacao) {
-		if (qtdeDeAnotacoes == numeroDeAulas) 
+		LocalDate aData = LocalDate.parse(data, 
+				DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+		return adicionaAnotacao(aData.getDayOfMonth(), aData.getMonthValue(), 
+				aData.getYear(), anotacao);
+	}
+
+	public boolean adicionaAnotacao(int dia, int mes, int ano, String anotacao) {
+		if (qtdeDeAnotacoes == numeroDeAulas)
 			return false;
-		anotacoes[qtdeDeAnotacoes++] = new Anotacao(data, anotacao);
+		anotacoes[qtdeDeAnotacoes++] = new Anotacao(dia, mes, ano, anotacao);
 		return true;
 	}
-	
+
 	public int getNumeroDeAulas() {
 		return numeroDeAulas;
 	}
-	
+
 	public int getQtdeDeAnotacoes() {
 		return qtdeDeAnotacoes;
 	}
 
 	public String recuperaAnotacao(int index) {
-		if(index >= 0 && index < qtdeDeAnotacoes)
+		if (index >= 0 && index < qtdeDeAnotacoes)
 			return anotacoes[index].toString();
 		return "anotacao nao existe.";
 	}
@@ -37,15 +46,14 @@ public class DiarioDeClasse {
 	}
 
 	public String[] pesquisaPalavra(String palavra) {
-		String[] result = new String[getQtdeDeAnotacoes()];
+		String[] matches = new String[getQtdeDeAnotacoes()];
 		int numOcorrencias = 0;
-		for (Anotacao anotacao: anotacoes) {
-			if(anotacao != null && anotacao.contemPalavra(palavra)) {
-				result[numOcorrencias] = anotacao.toString();
-				numOcorrencias++;
+		for (Anotacao anotacao : anotacoes) {
+			if (anotacao != null && anotacao.contemPalavra(palavra)) {
+				matches[numOcorrencias++] = anotacao.toString();
 			}
 		}
-		return Arrays.copyOfRange(result, 0, numOcorrencias);
+		return Arrays.copyOfRange(matches, 0, numOcorrencias);
 	}
 
 	@Override
@@ -75,6 +83,5 @@ public class DiarioDeClasse {
 			return false;
 		return true;
 	}
-	
-	
+
 }

@@ -1,19 +1,18 @@
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Anotacao {
-	private String data;
+	private LocalDate data;
 	private String anotacao;
 
-	public Anotacao(String data) {
-		this.data = data;
+	public Anotacao(int dia, int mes, int ano) {
+		this.data = LocalDate.of(ano, mes, dia);
 	}
 
-	public Anotacao(String data, String anotacao) {
-		this.data = data;
+	public Anotacao(int dia, int mes, int ano, String anotacao) {
+		this(ano, mes, dia);
 		this.anotacao = anotacao;
 	}
-
-
 
 	public void setAnotacao(String anotacao) {
 		this.anotacao = anotacao;
@@ -23,9 +22,8 @@ public class Anotacao {
 		anotacao += complemento;
 	}
 
-
 	public String getData() {
-		return data;
+		return data.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	}
 
 	public String getAnotacao() {
@@ -59,16 +57,11 @@ public class Anotacao {
 
 	@Override
 	public String toString() {
-		return "Anotacao [data=" + formatarData() + ", anotacao=" + anotacao + "]";
-	}
-
-	private String formatarData() {
-		SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
-		return f.format(data);
+		return "Anotacao [data=" + getData() + ", anotacao=" + anotacao + "]";
 	}
 
 	public boolean contemPalavra(String palavra) {
-		if(anotacao.contains(palavra))
+		if (anotacao.contains(palavra))
 			return true;
 		return false;
 	}

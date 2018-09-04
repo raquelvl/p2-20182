@@ -29,10 +29,11 @@ public class InterfaceLinhaDeComando {
 		
 		// manipular diario
 		do {
-			op = leInt(MENU);
+			op = recebeInteiro(MENU);
 			switch (op) {
 
 			case ANOTAR:
+				
 				boolean adicionou = dc.adicionaAnotacao(recebeData(), recebeAnotacao());
 				valida(adicionou);
 				break;
@@ -72,7 +73,7 @@ public class InterfaceLinhaDeComando {
 	private int getNumeroDaAnotacao(final String PROMPT_GET_ANOTACAO) {
 		int i = 0;
 		do {
-			i = leInt(PROMPT_GET_ANOTACAO);
+			i = recebeInteiro(PROMPT_GET_ANOTACAO);
 		} while (i >= dc.getQtdeDeAnotacoes() || i < 0);
 		return i;
 	}
@@ -100,7 +101,7 @@ public class InterfaceLinhaDeComando {
 		return dataRecebida;
 	}
 
-	private int leInt(String msg) {
+	private int recebeInteiro(String msg) {
 		System.out.println(msg);
 		while (!recebeNumeros.hasNextInt()) {
 			recebeNumeros.nextLine();

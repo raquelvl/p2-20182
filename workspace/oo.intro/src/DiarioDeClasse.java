@@ -40,8 +40,9 @@ public class DiarioDeClasse {
 		String[] result = new String[getQtdeDeAnotacoes()];
 		int numOcorrencias = 0;
 		for (Anotacao anotacao: anotacoes) {
-			if(anotacao.contemPalavra(palavra)) {
+			if(anotacao != null && anotacao.contemPalavra(palavra)) {
 				result[numOcorrencias] = anotacao.toString();
+				numOcorrencias++;
 			}
 		}
 		return Arrays.copyOfRange(result, 0, numOcorrencias);

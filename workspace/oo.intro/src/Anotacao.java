@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat;
+
 public class Anotacao {
 	private String data;
 	private String anotacao;
@@ -57,7 +59,12 @@ public class Anotacao {
 
 	@Override
 	public String toString() {
-		return "Anotacao [data=" + data + ", anotacao=" + anotacao + "]";
+		return "Anotacao [data=" + formatarData() + ", anotacao=" + anotacao + "]";
+	}
+
+	private String formatarData() {
+		SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+		return f.format(data);
 	}
 
 	public boolean contemPalavra(String palavra) {

@@ -37,13 +37,15 @@ public class DiarioDeClasse {
 	}
 
 	public String[] pesquisaPalavra(String palavra) {
-		String str = "";
-		for (int i = 0; i < getQtdeDeAnotacoes(); i++) {
-			if(anotacoes[i].contemPalavra(palavra)) {
-				str = str.concat(anotacoes[i].toString() + "EOAEOAEOA");
+		String[] result = new String[getQtdeDeAnotacoes()];
+		int numOcorrencias = 0;
+		for (Anotacao anotacao: anotacoes) {
+			if(anotacao != null && anotacao.contemPalavra(palavra)) {
+				result[numOcorrencias] = anotacao.toString();
+				numOcorrencias++;
 			}
 		}
-		return str.split("EOAEOAEOA");
+		return Arrays.copyOfRange(result, 0, numOcorrencias);
 	}
 
 	@Override

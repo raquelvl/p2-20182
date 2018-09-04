@@ -3,25 +3,27 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class DiarioDeBordoP2vOO {
+public class InterfaceLinhaDeComando {
 
-	private static Scanner recebeNumeros = new Scanner(System.in);
-	private static Scanner recebeLinha = new Scanner(System.in);
-	private static DiarioDeClasse dc;
+	private Scanner recebeNumeros;
+	private Scanner recebeLinha;
+	private DiarioDeClasse dc;
 
-	public static void main(String[] args) throws ParseException {
+	public InterfaceLinhaDeComando(int numAulas) {
+		recebeNumeros = new Scanner(System.in);
+		recebeLinha = new Scanner(System.in);
+		dc = new DiarioDeClasse(numAulas);
+	}	
 
+	public void start() throws ParseException {
 		/*
 		 * para o menu
 		 */
 		final String MENU = "1- adicionar anotacao;\n" + "2- pesquisar i-esima anotacao;\n" + "3- listar anotacoes;\n"
 				+ "4- pesquisar palavra-chave;\n" + "5- Sair";
 		final int ANOTAR = 1, PESQUISAR = 2, LISTAR = 3, PESQUISAR_PALAVRA = 4, SAIR = 5;
-
 		final String PROMPT_GET_ANOTACAO = "Qual anotacao quer ver? ";
 		final String PROMPT_PALAVRA_CHAVE = "Qual a palavra a ser pesquisada nas anotacoes?";
-
-		dc = new DiarioDeClasse(recuperaNumeroDeAulas(args));
 
 		int op;
 		
@@ -60,14 +62,14 @@ public class DiarioDeBordoP2vOO {
 		} while (dc.getQtdeDeAnotacoes() != dc.getNumeroDeAulas() && op != SAIR);
 	}
 
-	private static void valida(boolean adicionou) {
+	private void valida(boolean adicionou) {
 		if (adicionou)
 			System.out.println("Anotacao inserida com sucesso");
 		else
 			System.out.println("Nao foi possivel inserir nova anotacao");
 	}
 
-	private static int getNumeroDaAnotacao(final String PROMPT_GET_ANOTACAO) {
+	private int getNumeroDaAnotacao(final String PROMPT_GET_ANOTACAO) {
 		int i = 0;
 		do {
 			i = leInt(PROMPT_GET_ANOTACAO);
@@ -75,26 +77,17 @@ public class DiarioDeBordoP2vOO {
 		return i;
 	}
 
-	private static String leLinha(Scanner recebeLinha, String prompt) {
+	private String leLinha(Scanner recebeLinha, String prompt) {
 		System.out.println(prompt);
 		return recebeLinha.nextLine();
 	}
 
-	private static int recuperaNumeroDeAulas(String[] args) {
-		if (args.length > 1) {
-			System.out.println("Uso incorreto do sistema!");
-			System.exit(1);
-		}
-
-		return Integer.parseInt(args[0]);
-	}
-
-	private static String recebeAnotacao() {
+	private String recebeAnotacao() {
 		System.out.println("Anotacao da aula: ");
 		return recebeLinha.nextLine();
 	}
 
-	private static String recebeData() throws ParseException {
+	private String recebeData() throws ParseException {
 		String dataRecebida;
 		System.out.println("Digite a data (dd/MM/yyyy): ");
 		dataRecebida = recebeLinha.nextLine();
@@ -107,7 +100,7 @@ public class DiarioDeBordoP2vOO {
 		return dataRecebida;
 	}
 
-	private static int leInt(String msg) {
+	private int leInt(String msg) {
 		System.out.println(msg);
 		while (!recebeNumeros.hasNextInt()) {
 			recebeNumeros.nextLine();

@@ -14,7 +14,7 @@ public class DiarioDeClasse {
 
 	public boolean adicionaAnotacao(String data, String anotacao) {
 		LocalDate aData = LocalDate.parse(data, 
-				DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+				DateTimeFormatter.ofPattern("dd/MM/uuuu"));
 		return adicionaAnotacao(aData.getDayOfMonth(), aData.getMonthValue(), 
 				aData.getYear(), anotacao);
 	}
@@ -68,19 +68,19 @@ public class DiarioDeClasse {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
+		if(!(obj instanceof DiarioDeClasse))
 			return false;
-		if (getClass() != obj.getClass())
+		DiarioDeClasse outroDiario = (DiarioDeClasse) obj;
+		
+		if(outroDiario.getNumeroDeAulas() != getNumeroDeAulas())
 			return false;
-		DiarioDeClasse other = (DiarioDeClasse) obj;
-		if (!Arrays.equals(anotacoes, other.anotacoes))
+		if(outroDiario.getQtdeDeAnotacoes() != getQtdeDeAnotacoes())
 			return false;
-		if (numeroDeAulas != other.numeroDeAulas)
-			return false;
-		if (qtdeDeAnotacoes != other.qtdeDeAnotacoes)
-			return false;
+		
+		for (int i = 0; i < getNumeroDeAulas(); i++) {
+			if(!outroDiario.recuperaAnotacao(i).equals(recuperaAnotacao(i)))
+				return false;
+		}
 		return true;
 	}
 

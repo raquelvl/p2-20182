@@ -10,7 +10,7 @@ public class Anotacao {
 	}
 
 	public Anotacao(int dia, int mes, int ano, String anotacao) {
-		this(ano, mes, dia);
+		this(dia, mes, ano);
 		this.anotacao = anotacao;
 	}
 

@@ -68,6 +68,7 @@ public class InterfaceLinhaDeComando {
 			str = str.concat(anotacao + "\n");
 		}
 		return str;
+		
 	}
 
 	private void valida(boolean adicionou) {

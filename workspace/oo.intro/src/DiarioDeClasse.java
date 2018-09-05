@@ -42,7 +42,11 @@ public class DiarioDeClasse {
 
 	@Override
 	public String toString() {
-		return "DiarioDeClasse [anotacoes=" + Arrays.toString(anotacoes) + "]";
+		String str = "DiarioDeClasse: \n";
+		for (int i = 0; i < getQtdeDeAnotacoes(); i++) {
+			str = str.concat(recuperaAnotacao(i) + "\n");
+		}
+		return str;
 	}
 
 	public String[] pesquisaPalavra(String palavra) {

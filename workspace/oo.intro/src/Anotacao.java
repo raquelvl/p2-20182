@@ -57,7 +57,7 @@ public class Anotacao {
 
 	@Override
 	public String toString() {
-		return "Anotacao [data=" + getData() + ", anotacao=" + anotacao + "]";
+		return getData() + " - " + anotacao;
 	}
 
 	public boolean contemPalavra(String palavra) {

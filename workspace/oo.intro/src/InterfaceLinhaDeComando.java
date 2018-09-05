@@ -1,6 +1,5 @@
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class InterfaceLinhaDeComando {
@@ -51,7 +50,7 @@ public class InterfaceLinhaDeComando {
 			case PESQUISAR_PALAVRA:
 				String[] anotacoes = dc.pesquisaPalavra(
 						                leLinha(recebeLinha, PROMPT_PALAVRA_CHAVE));
-				System.out.println(Arrays.toString(anotacoes));
+				System.out.println(imprime(anotacoes));
 				break;
 
 			case SAIR:
@@ -61,6 +60,14 @@ public class InterfaceLinhaDeComando {
 				System.out.println("Opcao invalida!");
 			}
 		} while (dc.getQtdeDeAnotacoes() != dc.getNumeroDeAulas() && op != SAIR);
+	}
+
+	private String imprime(String[] anotacoes) {
+		String str = "";
+		for (String anotacao : anotacoes) {
+			str = str.concat(anotacao + "\n");
+		}
+		return str;
 	}
 
 	private void valida(boolean adicionou) {

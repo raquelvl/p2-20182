@@ -19,6 +19,34 @@ public class Caminhada {
 		this.login = loginDoUsuario;
 	}
 	
+	public boolean isAtiva() {
+		return ativa;
+	}
+
+	public void finaliza() {
+		this.ativa = false;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public String getOrigem() {
+		return origem;
+	}
+
+	public String getDestino() {
+		return destino;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public Set<String> getUsuarios() {
+		return usuarios;
+	}
+
 	public String loginDeQuemCriou() {
 		return login;
 	}
